@@ -8,7 +8,7 @@ class HomeController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth.merchant');
+        $this->middleware(['auth:merchant', 'verified']);
     }
 
     public function index()

@@ -19,7 +19,7 @@ class RegisterController extends Controller
 
     public function __construct()
     {
-        $this->middleware('guest.user');
+        $this->middleware('guest:user');
     }
 
     protected function validator(array $data)

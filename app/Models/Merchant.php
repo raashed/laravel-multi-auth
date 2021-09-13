@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Notifications\MerchantResetPasswordNotification;
+use App\Notifications\MerchantVerifyEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -26,4 +28,14 @@ class Merchant extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new MerchantVerifyEmail);
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new MerchantResetPasswordNotification($token));
+    }
 }

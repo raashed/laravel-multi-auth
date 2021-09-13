@@ -4,6 +4,7 @@ namespace App\Http;
 
 use App\Http\Middleware\AdminAuthenticate;
 use App\Http\Middleware\AdminRedirectIfAuthenticated;
+use App\Http\Middleware\CheckEmailIsVerified;
 use App\Http\Middleware\MerchantAuthenticate;
 use App\Http\Middleware\MerchantRedirectIfAuthenticated;
 use App\Http\Middleware\UserAuthenticate;
@@ -68,14 +69,20 @@ class Kernel extends HttpKernel
         'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+//        'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
 
-        'auth.admin' => AdminAuthenticate::class,
-        'auth.merchant' => MerchantAuthenticate::class,
-        'auth.user' => UserAuthenticate::class,
+//        'auth.admin' => AdminAuthenticate::class,
+//        'auth.merchant' => MerchantAuthenticate::class,
+//        'auth.user' => UserAuthenticate::class,
+//
+//        'admin' => AdminAuthenticate::class,
+//        'merchant' => MerchantAuthenticate::class,
+//        'user' => UserAuthenticate::class,
+//
+//        'guest.admin' => AdminRedirectIfAuthenticated::class,
+//        'guest.merchant' => MerchantRedirectIfAuthenticated::class,
+//        'guest.user' => UserRedirectIfAuthenticated::class,
 
-        'guest.admin' => AdminRedirectIfAuthenticated::class,
-        'guest.merchant' => MerchantRedirectIfAuthenticated::class,
-        'guest.user' => UserRedirectIfAuthenticated::class,
+        'verified' => CheckEmailIsVerified::class,
     ];
 }

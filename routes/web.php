@@ -55,7 +55,7 @@ Route::prefix('admin')->group(function () {
     Route::get('email/verify/{id}/{hash}', [AdminVerificationController::class, 'verify'])->name('admin.verification.verify');
     Route::post('email/resend', [AdminVerificationController::class, 'resend'])->name('admin.verification.resend');
     // After Login and Email Verified
-    Route::middleware(['admin'])->group(function () {
+    Route::middleware(['auth:admin', 'verified'])->group(function () {
         Route::get('/', [AdminHomeController::class, 'index'])->name('admin.home');
         Route::get('/home', [AdminHomeController::class, 'index'])->name('admin.home');
     });
@@ -82,7 +82,7 @@ Route::prefix('merchant')->group(function () {
     Route::get('email/verify/{id}/{hash}', [MerchantVerificationController::class, 'verify'])->name('merchant.verification.verify');
     Route::post('email/resend', [MerchantVerificationController::class, 'resend'])->name('merchant.verification.resend');
     // After Login and Email Verified
-    Route::middleware(['merchant'])->group(function () {
+    Route::middleware(['auth:merchant', 'verified'])->group(function () {
         Route::get('/', [MerchantHomeController::class, 'index'])->name('merchant.home');
         Route::get('/home', [MerchantHomeController::class, 'index'])->name('merchant.home');
     });
@@ -109,7 +109,7 @@ Route::prefix('user')->group(function () {
     Route::get('email/verify/{id}/{hash}', [UserVerificationController::class, 'verify'])->name('user.verification.verify');
     Route::post('email/resend', [UserVerificationController::class, 'resend'])->name('user.verification.resend');
     // After Login and Email Verified
-    Route::middleware(['user'])->group(function () {
+    Route::middleware(['auth:user', 'verified'])->group(function () {
         Route::get('/', [UserHomeController::class, 'index'])->name('user.home');
         Route::get('/home', [UserHomeController::class, 'index'])->name('user.home');
     });

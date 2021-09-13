@@ -19,7 +19,7 @@ class RegisterController extends Controller
 
     public function __construct()
     {
-        $this->middleware('guest.merchant');
+        $this->middleware('guest:merchant');
     }
 
     protected function validator(array $data)

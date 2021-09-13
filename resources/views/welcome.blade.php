@@ -404,51 +404,59 @@
 <body class="antialiased">
 <div
     class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-    @if (Route::has('admin.login'))
-        <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+
+    <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+        @if (Route::has('admin.login'))
             @auth
-                <a href="{{ url('/admin/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
+                <a href="{{ url('/admin/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Admin
+                    Home</a>
             @else
-                <a href="{{ route('admin.login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log
+                <a href="{{ route('admin.login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Admin
+                    Log
                     in</a>
 
                 @if (Route::has('admin.register'))
                     <a href="{{ route('admin.register') }}"
-                       class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+                       class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Admin Register</a>
                 @endif
             @endauth
-        </div>
-    @endif
-    @if (Route::has('merchant.login'))
-        <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+        @endif
+
+        <br/>
+
+        @if (Route::has('merchant.login'))
             @auth
-                <a href="{{ url('/merchant/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
+                <a href="{{ url('/merchant/home') }}"
+                   class="text-sm text-gray-700 dark:text-gray-500 underline">Merchant Home</a>
             @else
-                <a href="{{ route('merchant.login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log
+                <a href="{{ route('merchant.login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Merchant
+                    Log
                     in</a>
 
                 @if (Route::has('merchant.register'))
                     <a href="{{ route('merchant.register') }}"
-                       class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+                       class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Merchant Register</a>
                 @endif
             @endauth
-        </div>
-    @endif
-    @if (Route::has('user.login'))
-        <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+        @endif
+
+        <br/>
+
+        @if (Route::has('user.login'))
             @auth
-                <a href="{{ url('/user/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
+                <a href="{{ url('/user/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">User
+                    Home</a>
             @else
-                <a href="{{ route('user.login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log
+                <a href="{{ route('user.login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">User Log
                     in</a>
 
                 @if (Route::has('user.register'))
                     <a href="{{ route('user.register') }}"
-                       class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+                       class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">User Register</a>
                 @endif
             @endauth
-        </div>
-    @endif
+        @endif
+    </div>
 
     <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
         <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">

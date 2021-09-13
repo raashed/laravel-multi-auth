@@ -26,7 +26,7 @@ class ResetPasswordController extends Controller
 
     public function broker()
     {
-        return Password::broker('admin');
+        return Password::broker('admins');
     }
 
     protected function guard()
