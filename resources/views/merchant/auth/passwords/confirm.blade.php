@@ -1,4 +1,4 @@
-@extends('merchant.layouts.app')
+@extends('merchant.auth.layouts.app')
 
 @section('content')
 <div class="container">
