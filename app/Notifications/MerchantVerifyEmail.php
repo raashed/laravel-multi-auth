@@ -20,7 +20,7 @@ class MerchantVerifyEmail extends VerifyEmail
 
         return URL::temporarySignedRoute(
             'merchant.verification.verify',
-            Carbon::now()->addMinutes(Config::get('auth.verification.expire', 1)),
+            Carbon::now()->addMinutes(Config::get('auth.verification.expire', 60)),
             [
                 'id' => $notifiable->getKey(),
                 'hash' => sha1($notifiable->getEmailForVerification()),

@@ -2,13 +2,7 @@
 
 namespace App\Http;
 
-use App\Http\Middleware\AdminAuthenticate;
-use App\Http\Middleware\AdminRedirectIfAuthenticated;
 use App\Http\Middleware\CheckEmailIsVerified;
-use App\Http\Middleware\MerchantAuthenticate;
-use App\Http\Middleware\MerchantRedirectIfAuthenticated;
-use App\Http\Middleware\UserAuthenticate;
-use App\Http\Middleware\UserRedirectIfAuthenticated;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -70,18 +64,6 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
 //        'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-
-//        'auth.admin' => AdminAuthenticate::class,
-//        'auth.merchant' => MerchantAuthenticate::class,
-//        'auth.user' => UserAuthenticate::class,
-//
-//        'admin' => AdminAuthenticate::class,
-//        'merchant' => MerchantAuthenticate::class,
-//        'user' => UserAuthenticate::class,
-//
-//        'guest.admin' => AdminRedirectIfAuthenticated::class,
-//        'guest.merchant' => MerchantRedirectIfAuthenticated::class,
-//        'guest.user' => UserRedirectIfAuthenticated::class,
 
         'verified' => CheckEmailIsVerified::class,
     ];
