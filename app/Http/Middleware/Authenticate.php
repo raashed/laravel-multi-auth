@@ -25,22 +25,22 @@ class Authenticate extends Middleware
             return route('user.login');
         }
         if ($request->route()->getPrefix() == 'api/admin') {
-            return response()->json([
+            abort(response()->json([
                 'message' => 'UnAuthenticated',
                 'data' => 'Invalid token or token expired.'
-            ], 401);
+            ], 401));
         }
         if ($request->route()->getPrefix() == 'api/merchant') {
-            return response()->json([
+            abort(response()->json([
                 'message' => 'UnAuthenticated',
                 'data' => 'Invalid token or token expired.'
-            ], 401);
+            ], 401));
         }
         if ($request->route()->getPrefix() == 'api/user') {
-            return response()->json([
+            abort(response()->json([
                 'message' => 'UnAuthenticated',
                 'data' => 'Invalid token or token expired.'
-            ], 401);
+            ], 401));
         }
         return route('login');
     }

@@ -28,6 +28,24 @@ class CheckEmailIsVerified extends EnsureEmailIsVerified
                     ? abort(403, 'Your email address is not verified.')
                     : Redirect::guest(URL::route($redirectToRoute ?: 'user.verification.notice'));
             }
+            if ($request->route()->getPrefix() == 'api/admin') {
+                return abort(response()->json([
+                    'message' => 'Not_Verified',
+                    'data' => 'Your email address is not verified.',
+                ]));
+            }
+            if ($request->route()->getPrefix() == 'api/merchant') {
+                return abort(response()->json([
+                    'message' => 'Not_Verified',
+                    'data' => 'Your email address is not verified.',
+                ]));
+            }
+            if ($request->route()->getPrefix() == 'api/user') {
+                return abort(response()->json([
+                    'message' => 'Not_Verified',
+                    'data' => 'Your email address is not verified.',
+                ]));
+            }
 
             return $request->expectsJson()
                 ? abort(403, 'Your email address is not verified.')
