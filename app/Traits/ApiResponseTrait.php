@@ -14,6 +14,16 @@ trait ApiResponseTrait
         ]);
     }
 
+
+    public function errorApiResponse($data): JsonResponse
+    {
+        return response()->json([
+            'message' => 'Error',
+            'data' => $data
+        ]);
+    }
+
+
     public function validationErrorApiResponse($data): JsonResponse
     {
         return response()->json([
