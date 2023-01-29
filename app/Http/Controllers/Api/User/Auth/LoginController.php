@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\User\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
+use App\Models\User;
 use App\Traits\ApiResponseTrait;
 use Illuminate\Cache\RateLimiter;
 use Illuminate\Contracts\Auth\Guard;
@@ -17,8 +17,6 @@ use Illuminate\Support\Str;
 class LoginController extends Controller
 {
     use ApiResponseTrait;
-
-    protected string $redirectTo = RouteServiceProvider::USER_HOME;
 
     public function __construct()
     {
@@ -43,7 +41,7 @@ class LoginController extends Controller
 
             $this->limiter()->clear($this->throttleKey($request));
 
-            $token = $this->guard()->user()->createToken(Str::random(40))->accessToken;
+            $token = User::find($this->guard()->id())->createToken(Str::random(40))->accessToken;
 
             return $this->successApiResponse($token);
         }
@@ -54,6 +52,7 @@ class LoginController extends Controller
             ]
         ]);
     }
+
     protected function guard(): Guard|StatefulGuard
     {
         return Auth::guard('user');

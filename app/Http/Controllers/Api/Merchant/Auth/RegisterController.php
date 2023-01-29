@@ -4,22 +4,25 @@ namespace App\Http\Controllers\Api\Merchant\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Merchant;
-use App\Providers\RouteServiceProvider;
+use App\Traits\ApiResponseTrait;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 
 class RegisterController extends Controller
 {
-    use RegistersUsers;
-
-    protected string $redirectTo = RouteServiceProvider::MERCHANT_HOME;
+    use ApiResponseTrait;
 
     public function __construct()
     {
@@ -35,7 +38,7 @@ class RegisterController extends Controller
         ]);
     }
 
-    protected function create(array $data)
+    protected function create(array $data): Merchant|Model
     {
         return Merchant::create([
             'name' => $data['name'],
@@ -44,13 +47,24 @@ class RegisterController extends Controller
         ]);
     }
 
-    public function showRegistrationForm(): Factory|View|Application
-    {
-        return view('merchant.auth.register');
-    }
-
     protected function guard(): Guard|StatefulGuard
     {
         return Auth::guard('merchant');
+    }
+
+    /**
+     * @throws ValidationException
+     */
+    public function register(Request $request): JsonResponse|Redirector|RedirectResponse|Application
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        $this->guard()->login($user);
+
+        $token = Merchant::find($this->guard()->id())->createToken(Str::random(40))->accessToken;
+
+        return $this->successApiResponse($token);
     }
 }

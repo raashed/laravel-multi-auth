@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Admin\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
 use App\Traits\ApiResponseTrait;
 use Illuminate\Cache\RateLimiter;
 use Illuminate\Contracts\Auth\Guard;
@@ -40,7 +41,7 @@ class LoginController extends Controller
 
             $this->limiter()->clear($this->throttleKey($request));
 
-            $token = $this->guard()->user()->createToken(Str::random(40))->accessToken;
+            $token = Admin::find($this->guard()->id())->createToken(Str::random(40))->accessToken;
 
             return $this->successApiResponse($token);
         }
