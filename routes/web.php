@@ -1,32 +1,26 @@
 <?php
 
-// Admin Routes
-use App\Http\Controllers\Admin\Auth\ConfirmPasswordController as AdminConfirmPasswordController;
-use App\Http\Controllers\Admin\Auth\ForgotPasswordController as AdminForgotPasswordController;
-use App\Http\Controllers\Admin\Auth\LoginController as AdminLoginController;
-use App\Http\Controllers\Admin\Auth\RegisterController as AdminRegisterController;
-use App\Http\Controllers\Admin\Auth\ResetPasswordController as AdminResetPasswordController;
-use App\Http\Controllers\Admin\Auth\VerificationController as AdminVerificationController;
-use App\Http\Controllers\Admin\HomeController as AdminHomeController;
-
-// Merchant Routes
-use App\Http\Controllers\Merchant\Auth\ConfirmPasswordController as MerchantConfirmPasswordController;
-use App\Http\Controllers\Merchant\Auth\ForgotPasswordController as MerchantForgotPasswordController;
-use App\Http\Controllers\Merchant\Auth\LoginController as MerchantLoginController;
-use App\Http\Controllers\Merchant\Auth\RegisterController as MerchantRegisterController;
-use App\Http\Controllers\Merchant\Auth\ResetPasswordController as MerchantResetPasswordController;
-use App\Http\Controllers\Merchant\Auth\VerificationController as MerchantVerificationController;
-use App\Http\Controllers\Merchant\HomeController as MerchantHomeController;
-
-// User Routes
-use App\Http\Controllers\User\Auth\ConfirmPasswordController as UserConfirmPasswordController;
-use App\Http\Controllers\User\Auth\ForgotPasswordController as UserForgotPasswordController;
-use App\Http\Controllers\User\Auth\LoginController as UserLoginController;
-use App\Http\Controllers\User\Auth\RegisterController as UserRegisterController;
-use App\Http\Controllers\User\Auth\ResetPasswordController as UserResetPasswordController;
-use App\Http\Controllers\User\Auth\VerificationController as UserVerificationController;
-use App\Http\Controllers\User\HomeController as UserHomeController;
-
+use App\Http\Controllers\Web\Admin\Auth\ConfirmPasswordController as AdminConfirmPasswordController;
+use App\Http\Controllers\Web\Admin\Auth\ForgotPasswordController as AdminForgotPasswordController;
+use App\Http\Controllers\Web\Admin\Auth\LoginController as AdminLoginController;
+use App\Http\Controllers\Web\Admin\Auth\RegisterController as AdminRegisterController;
+use App\Http\Controllers\Web\Admin\Auth\ResetPasswordController as AdminResetPasswordController;
+use App\Http\Controllers\Web\Admin\Auth\VerificationController as AdminVerificationController;
+use App\Http\Controllers\Web\Admin\HomeController as AdminHomeController;
+use App\Http\Controllers\Web\Merchant\Auth\ConfirmPasswordController as MerchantConfirmPasswordController;
+use App\Http\Controllers\Web\Merchant\Auth\ForgotPasswordController as MerchantForgotPasswordController;
+use App\Http\Controllers\Web\Merchant\Auth\LoginController as MerchantLoginController;
+use App\Http\Controllers\Web\Merchant\Auth\RegisterController as MerchantRegisterController;
+use App\Http\Controllers\Web\Merchant\Auth\ResetPasswordController as MerchantResetPasswordController;
+use App\Http\Controllers\Web\Merchant\Auth\VerificationController as MerchantVerificationController;
+use App\Http\Controllers\Web\Merchant\HomeController as MerchantHomeController;
+use App\Http\Controllers\Web\User\Auth\ConfirmPasswordController as UserConfirmPasswordController;
+use App\Http\Controllers\Web\User\Auth\ForgotPasswordController as UserForgotPasswordController;
+use App\Http\Controllers\Web\User\Auth\LoginController as UserLoginController;
+use App\Http\Controllers\Web\User\Auth\RegisterController as UserRegisterController;
+use App\Http\Controllers\Web\User\Auth\ResetPasswordController as UserResetPasswordController;
+use App\Http\Controllers\Web\User\Auth\VerificationController as UserVerificationController;
+use App\Http\Controllers\Web\User\HomeController as UserHomeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
