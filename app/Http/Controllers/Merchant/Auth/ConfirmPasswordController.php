@@ -4,20 +4,23 @@ namespace App\Http\Controllers\Merchant\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\ConfirmsPasswords;
 
 class ConfirmPasswordController extends Controller
 {
     use ConfirmsPasswords;
 
-    protected $redirectTo = RouteServiceProvider::MERCHANT_HOME;
+    protected string $redirectTo = RouteServiceProvider::MERCHANT_HOME;
 
     public function __construct()
     {
         $this->middleware('auth:merchant');
     }
 
-    public function showConfirmForm()
+    public function showConfirmForm(): Factory|View|Application
     {
         return view('merchant.auth.passwords.confirm');
     }

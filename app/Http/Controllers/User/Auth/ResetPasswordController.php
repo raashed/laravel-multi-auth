@@ -4,6 +4,12 @@ namespace App\Http\Controllers\User\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Contracts\Auth\PasswordBroker;
+use Illuminate\Contracts\Auth\StatefulGuard;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,9 +19,9 @@ class ResetPasswordController extends Controller
 {
     use ResetsPasswords;
 
-    protected $redirectTo = RouteServiceProvider::USER_HOME;
+    protected string $redirectTo = RouteServiceProvider::USER_HOME;
 
-    public function showResetForm(Request $request)
+    public function showResetForm(Request $request): Factory|View|Application
     {
         $token = $request->route()->parameter('token');
 
@@ -24,12 +30,12 @@ class ResetPasswordController extends Controller
         );
     }
 
-    public function broker()
+    public function broker(): PasswordBroker
     {
         return Password::broker('users');
     }
 
-    protected function guard()
+    protected function guard(): Guard|StatefulGuard
     {
         return Auth::guard('user');
     }

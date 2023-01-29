@@ -3,20 +3,23 @@
 namespace App\Http\Controllers\User\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\Auth\PasswordBroker;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 
 class ForgotPasswordController extends Controller
 {
     use SendsPasswordResetEmails;
 
-    public function showLinkRequestForm()
+    public function showLinkRequestForm(): Factory|View|Application
     {
         return view('user.auth.passwords.email');
     }
 
-    public function broker()
+    public function broker(): PasswordBroker
     {
         return Password::broker('users');
     }

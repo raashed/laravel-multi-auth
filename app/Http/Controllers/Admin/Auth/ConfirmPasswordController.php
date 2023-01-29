@@ -10,7 +10,7 @@ class ConfirmPasswordController extends Controller
 {
     use ConfirmsPasswords;
 
-    protected $redirectTo = RouteServiceProvider::ADMIN_HOME;
+    protected string $redirectTo = RouteServiceProvider::ADMIN_HOME;
 
     public function __construct()
     {
